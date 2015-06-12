@@ -1,5 +1,5 @@
-﻿#signalsVector = c('乖離訊號1'= 乖離訊號1, '乖離訊號2' = 乖離訊號2, '乖離訊號3' = 乖離訊號3, '整理訊號1' = 整理訊號1, '整理訊號2' = 整理訊號2, '強勢訊號1' = 強勢訊號1, '強勢訊號2' = 強勢訊號2, '強勢訊號3'= 強勢訊號3)
+﻿signalsVector = c(乖離訊號1, 乖離訊號2, 乖離訊號3, 整理訊號1, 整理訊號2, 強勢訊號1, 強勢訊號2, 強勢訊號3)
 runModel <- function(signalsVector){
-  yyy=1.7654*(!signalsVector['乖離訊號1'])+1.1588*(signalsVector['乖離訊號1'])+ 1.4022*(signalsVector['整理訊號1']) + 0.3526*(signalsVector['整理訊號2'])-0.5267* (signalsVector['強勢訊號3'])+ 1.0773*(signalsVector['乖離訊號2'])+ 0.2146* (signalsVector['強勢訊號2'])-1.7729*(signalsVector['整理訊號1']*signalsVector['整理訊號2'])+ 2.1481*(signalsVector['整理訊號1']*signalsVector['強勢訊號2'])+2.1656*(signalsVector['乖離訊號1']*signalsVector['整理訊號1'])-2.2605*(signalsVector['整理訊號1']*signalsVector['乖離訊號2'])+ 0.7606*(signalsVector['乖離訊號1']*signalsVector['強勢訊號3'])-1.2580*(signalsVector['整理訊號2']*signalsVector['強勢訊號2'])-1.1721*(signalsVector['整理訊號1']*signalsVector['強勢訊號3'])
+  yyy=1.7654*(!signalsVector[1])+1.1588*(signalsVector[1])+ 1.4022*(signalsVector[4]) + 0.3526*(signalsVector[5])-0.5267* (signalsVector[8])+ 1.0773*(signalsVector[2])+ 0.2146* (signalsVector[7])-1.7729*(signalsVector[4]*signalsVector[5])+ 2.1481*(signalsVector[4]*signalsVector[7])+2.1656*(signalsVector[1]*signalsVector[4])-2.2605*(signalsVector[4]*signalsVector[2])+ 0.7606*(signalsVector[1]*signalsVector[8])-1.2580*(signalsVector[5]*signalsVector[7])-1.1721*(signalsVector[4]*signalsVector[8])
   return yyy
 }

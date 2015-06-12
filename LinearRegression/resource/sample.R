@@ -1,4 +1,3 @@
-simple <- function(){
-a <- 1
+simple <- function(a){
 return(a)
 }

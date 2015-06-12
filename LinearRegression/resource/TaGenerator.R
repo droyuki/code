@@ -1,9 +1,6 @@
-﻿inputClose <- function(Close){
+inputClose <- function(Close){
 
-  #Close為讀取收盤價向量
-
-  while(length(Close)<=90){
-  }
+  
   SMA13=rep(0,100)
   SMA21=rep(0,100)
   SMA55=rep(0,100)
@@ -40,16 +37,18 @@
     SMA89[i]=mean(k,na.rm = T)
   }
   
-
   
-  乖離訊號1=((Close[length(Close)]-SMA13[length(SMA13)])/SMA13[length(SMA13)])<(-0.0003315)
-  乖離訊號2=((Close-SMA21[length(SMA21)])/SMA21[length(SMA21)])<(-0.0010215)
-  乖離訊號3=((Close-SMA55[length(SMA55)])/SMA55[length(SMA55)])<(-0.0005193)
-  強勢訊號1=((Close-SMA55[length(SMA55)])/SMA55[length(SMA55)])>0.00014248
-  強勢訊號2=(SMA13[length(SMA13)]>SMA21[length(SMA21)])&(SMA21[length(SMA21)]>SMA55[length(SMA55)])
-  強勢訊號3=(SMA21[length(SMA21)]>SMA55[length(SMA55)])&(SMA55[length(SMA55)]>SMA89[length(SMA89)])
-  整理訊號1=(abs((SMA13[length(SMA13)]-SMA21[length(SMA21)])/SMA21[length(SMA21)])<0.00080704)&(abs((SMA21[length(SMA21)]-SMA55[length(SMA55)])/SMA55[length(SMA55)])<0.00080704)
-  整理訊號2=(abs((SMA21[length(SMA21)]-SMA55[length(SMA55)])/SMA55[length(SMA55)])<0.00117728)&(abs((SMA55[length(SMA55)]-SMA89[length(SMA89)])/SMA89[length(SMA89)])<0.00117728)
-  signalsVector = c('乖離訊號1'= 乖離訊號1, '乖離訊號2' = 乖離訊號2, '乖離訊號3' = 乖離訊號3, '整理訊號1' = 整理訊號1, '整理訊號2' = 整理訊號2, '強勢訊號1' = 強勢訊號1, '強勢訊號2' = 強勢訊號2, '強勢訊號3'= 強勢訊號3)
-  return signalsVector
+  
+  biasOne=((Close[length(Close)]-SMA13[length(SMA13)])/SMA13[length(SMA13)])<(-0.0003315)
+  biasTwo=((Close[length(Close)]-SMA21[length(SMA21)])/SMA21[length(SMA21)])<(-0.0010215)
+  biasThree=((Close[length(Close)]-SMA55[length(SMA55)])/SMA55[length(SMA55)])<(-0.0005193)
+  strongOne=((Close[length(Close)]-SMA55[length(SMA55)])/SMA55[length(SMA55)])>0.00014248
+  strongTwo=(SMA13[length(SMA13)]>SMA21[length(SMA21)])&(SMA21[length(SMA21)]>SMA55[length(SMA55)])
+  strongThree=(SMA21[length(SMA21)]>SMA55[length(SMA55)])&(SMA55[length(SMA55)]>SMA89[length(SMA89)])
+  tOne=(abs((SMA13[length(SMA13)]-SMA21[length(SMA21)])/SMA21[length(SMA21)])<0.00080704)&(abs((SMA21[length(SMA21)]-SMA55[length(SMA55)])/SMA55[length(SMA55)])<0.00080704)
+  tTwo=(abs((SMA21[length(SMA21)]-SMA55[length(SMA55)])/SMA55[length(SMA55)])<0.00117728)&(abs((SMA55[length(SMA55)]-SMA89[length(SMA89)])/SMA89[length(SMA89)])<0.00117728)
+  signalsVector = c(biasOne, biasTwo, biasThree, tOne, tTwo, strongOne, strongTwo, strongThree)
+  
+  yyy=1.7654*(!signalsVector[1])+1.1588*(signalsVector[1])+ 1.4022*(signalsVector[4]) + 0.3526*(signalsVector[5])-0.5267* (signalsVector[8])+ 1.0773*(signalsVector[2])+ 0.2146* (signalsVector[7])-1.7729*(signalsVector[4]*signalsVector[5])+ 2.1481*(signalsVector[4]*signalsVector[7])+2.1656*(signalsVector[1]*signalsVector[4])-2.2605*(signalsVector[4]*signalsVector[2])+ 0.7606*(signalsVector[1]*signalsVector[8])-1.2580*(signalsVector[5]*signalsVector[7])-1.1721*(signalsVector[4]*signalsVector[8])
+  return(biasTwo)
 }
