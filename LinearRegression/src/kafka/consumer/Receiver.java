@@ -16,7 +16,7 @@ public class Receiver extends MsgReceiver {
         msgMap = transToPriceMap(message);
         resultMap = filterKBarID(msgMap);
 
-        // I only want 1m
+        // we only need 1m
         String kbar = resultMap.get("KBAR");
         String time = kbar.split("_")[3];
         if (time.equalsIgnoreCase("1m")) {
