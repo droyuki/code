@@ -48,7 +48,7 @@ inputClose <- function(Close){
   tOne=(abs((SMA13[length(SMA13)]-SMA21[length(SMA21)])/SMA21[length(SMA21)])<0.00080704)&(abs((SMA21[length(SMA21)]-SMA55[length(SMA55)])/SMA55[length(SMA55)])<0.00080704)
   tTwo=(abs((SMA21[length(SMA21)]-SMA55[length(SMA55)])/SMA55[length(SMA55)])<0.00117728)&(abs((SMA55[length(SMA55)]-SMA89[length(SMA89)])/SMA89[length(SMA89)])<0.00117728)
   signalsVector = c(biasOne, biasTwo, biasThree, tOne, tTwo, strongOne, strongTwo, strongThree)
-  
+  testR = signalsVector[1]
   yyy=1.7654*(!signalsVector[1])+1.1588*(signalsVector[1])+ 1.4022*(signalsVector[4]) + 0.3526*(signalsVector[5])-0.5267* (signalsVector[8])+ 1.0773*(signalsVector[2])+ 0.2146* (signalsVector[7])-1.7729*(signalsVector[4]*signalsVector[5])+ 2.1481*(signalsVector[4]*signalsVector[7])+2.1656*(signalsVector[1]*signalsVector[4])-2.2605*(signalsVector[4]*signalsVector[2])+ 0.7606*(signalsVector[1]*signalsVector[8])-1.2580*(signalsVector[5]*signalsVector[7])-1.1721*(signalsVector[4]*signalsVector[8])
-  return(biasTwo)
+  return(yyy)
 }
