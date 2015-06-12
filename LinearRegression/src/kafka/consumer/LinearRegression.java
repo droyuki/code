@@ -46,9 +46,9 @@ public class LinearRegression {
         String topic = "LinearRegression";
         String sendMe="";
         if (y >= 3.5) { //buy
-
+            sendMe="=========Buy!!=========";
         } else { //sell
-            
+            sendMe="=========Sell!!=========";
         }
         KafkaTopicProducer.getInstance().send(topic, sendMe);
     }
