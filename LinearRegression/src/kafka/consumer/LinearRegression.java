@@ -1,15 +1,9 @@
 package kafka.consumer;
-
-import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Queue;
-
 import org.rosuda.JRI.REXP;
 import org.rosuda.JRI.Rengine;
-
-import main.KafkaTopicConsumer;
 import main.KafkaTopicProducer;
 
 public class LinearRegression {
