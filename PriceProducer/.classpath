@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="lib/apache-rat-0.8.jar"/>
+	<classpathentry kind="lib" path="lib/jopt-simple-3.2.jar"/>
+	<classpathentry kind="lib" path="lib/kafka_2.8.0-0.8.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/KafkaHelper_20141209.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/metrics-core-2.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/scala-library-2.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="lib/snappy-java-1.0.5.jar"/>
+	<classpathentry kind="lib" path="lib/zkclient-0.3.jar"/>
+	<classpathentry kind="lib" path="lib/zookeeper-3.3.4.jar"/>
+	<classpathentry kind="lib" path="lib/GlobalConfigMap.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
