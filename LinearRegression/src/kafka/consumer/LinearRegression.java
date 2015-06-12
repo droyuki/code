@@ -1,6 +1,7 @@
 package kafka.consumer;
 import org.rosuda.JRI.REXP;
 import org.rosuda.JRI.Rengine;
+
 import main.KafkaTopicProducer;
 
 public class LinearRegression {
@@ -10,7 +11,7 @@ public class LinearRegression {
     // public static LinearRegression getInstance() {
     // return lr == null ? (lr = new LinearRegression()) : lr;
     // }
-
+    Rengine re;
     public LinearRegression() {
         System.out.println("LR create!");
     }
@@ -33,9 +34,14 @@ public class LinearRegression {
 //     }
 
     public void jri(double[] inputArr) {
-        Rengine re = new Rengine(new String[] { "--vanilla" }, false, null);
+        re = new Rengine(new String[] { "--vanilla" }, false, null);
+        //test code
+        int[] intArray = {33, 44, 55};
+        System.out.println(re.assign("x", intArray));
+        System.out.println("JRI success !");
+        //test code
         System.out.println("Get price !");
-        re.eval("source('../LinearRegression/resource/TaGenerator.R')");
+        re.eval("source('~/Desktop/rSource/TaGenerator.R')");
         re.assign("inputV", inputArr);
         System.out.println("Calculating...");
         REXP value = re.eval("inputClose(inputV)");

@@ -12,7 +12,7 @@ public class Test {
 			System.exit(0);
 		}
 		// load own R script
-		re.eval("source('../LinearRegression/resource/TaGenerator.R')");
+		re.eval("source('~/Desktop/rSource/TaGenerator.R')");
 
 		// Test input double array
 		ArrayList<Double> testInput = new ArrayList<Double>();
