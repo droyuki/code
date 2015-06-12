@@ -1,13 +1,6 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-
-import org.rosuda.JRI.RBool;
 import org.rosuda.JRI.REXP;
-import org.rosuda.JRI.RList;
-import org.rosuda.JRI.RVector;
 import org.rosuda.JRI.Rengine;
-import org.rosuda.REngine.REXPVector;
 
 public class Test {
 	public static void main(String[] args) {
