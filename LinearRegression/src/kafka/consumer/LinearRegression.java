@@ -10,6 +10,7 @@ import org.rosuda.JRI.REXP;
 import org.rosuda.JRI.Rengine;
 
 import main.KafkaTopicConsumer;
+import main.KafkaTopicProducer;
 
 public class LinearRegression {
     private static LinearRegression lr = null;
@@ -48,8 +49,13 @@ public class LinearRegression {
     }
 
     public void sendSignal(double y) {
-        if (y >= 3.5) {
+        String topic = "LinearRegression";
+        String sendMe="";
+        if (y >= 3.5) { //buy
 
+        } else { //sell
+            
         }
+        KafkaTopicProducer.getInstance().send(topic, sendMe);
     }
 }
