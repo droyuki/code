@@ -11,15 +11,25 @@ import org.rosuda.JRI.Rengine;
 import main.MsgReceiver;
 
 public class Receiver extends MsgReceiver {
-    Rengine re = new Rengine(new String[] { "--vanilla" }, false, null);
 
     public void execute(String message) {
+        // message sample
+        // msgKey:taiwan_future_TFM5_1s@1434082774154;8:1194.4;5:1194.4;7:1194.4;Date:1434082774154;9:3945.0;6:1194.4;KBAR:taiwan_future_TFM5_1s_1434082774154;
+        // msgKey:taiwan_future_TFM5_1m@1434087245764;8:1192.0;5:1192.2;7:1192.2;Date:1434087245764;9:50866.0;6:1192.6;KBAR:taiwan_future_TFM5_1m_1434087245764;
         Map<String, String> msgMap = new HashMap<String, String>();
         Map<String, String> resultMap = new HashMap<String, String>();
         msgMap = transToPriceMap(message);
         resultMap = filterKBarID(msgMap);
-        double closePrice = Double.parseDouble(resultMap.get("Close"));
+
+        // I only want 1m
+        String kbar = resultMap.get("KBAR");
+        String time = kbar.split("_")[3];
+        if (time.equalsIgnoreCase("1m")) {
+            double closePrice = Double.parseDouble(resultMap.get("Close"));
+            LinearRegression.getInstance().collectBuffer(closePrice);
+        }
     }
+
     private Map<String, String> transToPriceMap(String valStr) {
         Map<String, String> retMe = new HashMap<String, String>();
         String[] valStrAry = valStr.split(";");
@@ -29,6 +39,7 @@ public class Receiver extends MsgReceiver {
         }
         return retMe;
     }
+
     private Map<String, String> filterKBarID(Map<String, String> valMap) {
         Map<String, String> retMe = new HashMap<String, String>();
         for (Entry<String, String> val : valMap.entrySet()) {

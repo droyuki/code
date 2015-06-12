@@ -11,7 +11,7 @@ public class KafkaTest{
         String message="msgKey:taiwan_future_TXM5_5s@1434082773031;8:9261.0;5:9261.0;7:9261.0;Date:1434082773031;9:270216.0;6:9261.0;KBAR:taiwan_future_TXM5_5s_1434082773031;";
         msgMap = transToPriceMap(message);
         resultMap = filterKBarID(msgMap);   
-        System.out.println(resultMap.get("Close"));
+        System.out.println(resultMap.get("KBAR").split("_")[3]);
     }
     public static Map<String, String> transToPriceMap(String valStr) {
         Map<String, String> retMe = new HashMap<String, String>();

@@ -1,10 +1,13 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import org.rosuda.JRI.RBool;
 import org.rosuda.JRI.REXP;
 import org.rosuda.JRI.RList;
 import org.rosuda.JRI.RVector;
 import org.rosuda.JRI.Rengine;
+import org.rosuda.REngine.REXPVector;
 
 public class Test {
 	public static void main(String[] args) {
@@ -18,8 +21,16 @@ public class Test {
 		// load own R script
 		re.eval("source('../LinearRegression/resource/TaGenerator.R')");
 
-		// Test input
-		re.eval("inputV <- c(9100:9389)");
+		// Test input double array
+		ArrayList<Double> testInput = new ArrayList<Double>();
+		for(double i = 9000;i<9389;i++) {
+		    testInput.add(i);
+		}
+		double[] inputArr = new double[testInput.size()];
+	    for(int i = 0;i<testInput.size();i++) {
+	        inputArr[i] = testInput.get(i);
+	    }
+		re.assign("inputV", inputArr);
 		REXP value = re.eval("inputClose(inputV)");
 		// REXP value = re.eval("as.vector(data.frame(a<-inputClose(inputV)))");
 		double a = value.asDouble();
