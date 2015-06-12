@@ -1,13 +1,19 @@
 package kafka.consumer;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Map.Entry;
+
 import main.MsgReceiver;
 
 public class Receiver extends MsgReceiver {
-
+    LinearRegression lr =  new LinearRegression();
+    private Queue<Double> priceBuffer = new LinkedList<Double>();
     public void execute(String message) {
+        System.out.println(message);
         // message sample
         // msgKey:taiwan_future_TFM5_1s@1434082774154;8:1194.4;5:1194.4;7:1194.4;Date:1434082774154;9:3945.0;6:1194.4;KBAR:taiwan_future_TFM5_1s_1434082774154;
         // msgKey:taiwan_future_TFM5_1m@1434087245764;8:1192.0;5:1192.2;7:1192.2;Date:1434087245764;9:50866.0;6:1192.6;KBAR:taiwan_future_TFM5_1m_1434087245764;
@@ -21,7 +27,20 @@ public class Receiver extends MsgReceiver {
         String time = kbar.split("_")[3];
         if (time.equalsIgnoreCase("1m")) {
             double closePrice = Double.parseDouble(resultMap.get("Close"));
-            LinearRegression.getInstance().collectBuffer(closePrice);
+            System.out.println("Consumer receive: "+closePrice);
+            if (priceBuffer.size() < 2) {
+                System.out.println("Collecting price...");
+                priceBuffer.add(closePrice);
+                System.out.println("Now buffer size is: "+priceBuffer.size());
+            } else {
+                System.out.println("Buffer is full, size = "+priceBuffer.size());
+                double[] priceArray = new double[priceBuffer.size()];
+                Iterator<Double> iterator = priceBuffer.iterator();
+                for (int i = 0; i < priceBuffer.size(); i++) {
+                    priceArray[i] = iterator.next();
+                }
+                lr.jri(priceArray);
+            }
         }
     }
 
