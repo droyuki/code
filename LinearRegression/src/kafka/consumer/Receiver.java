@@ -28,7 +28,7 @@ public class Receiver extends MsgReceiver {
         if (time.equalsIgnoreCase("1m")) {
             double closePrice = Double.parseDouble(resultMap.get("Close"));
             System.out.println("Consumer receive: "+closePrice);
-            if (priceBuffer.size() < 2) {
+            if (priceBuffer.size() < 5) {
                 System.out.println("Collecting price...");
                 priceBuffer.add(closePrice);
                 System.out.println("Now buffer size is: "+priceBuffer.size());

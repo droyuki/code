@@ -2,6 +2,7 @@ package kafka.consumer;
 
 import main.KafkaTopicConsumer;
 public class Start{
+    //-Djava.library.path="/home/kmlab/R/x86_64-pc-linux-gnu-library/3.0/rJava/jri"
     public static void main(String[] args) {
         Receiver r = new Receiver();
         @SuppressWarnings("unused")
