@@ -10,8 +10,9 @@ import java.util.Map.Entry;
 import main.MsgReceiver;
 
 public class Receiver extends MsgReceiver {
-    LinearRegression lr =  new LinearRegression();
+    LinearRegression lr = new LinearRegression();
     private Queue<Double> priceBuffer = new LinkedList<Double>();
+
     public void execute(String message) {
         System.out.println(message);
         // message sample
@@ -27,19 +28,23 @@ public class Receiver extends MsgReceiver {
         String time = kbar.split("_")[3];
         if (time.equalsIgnoreCase("1m")) {
             double closePrice = Double.parseDouble(resultMap.get("Close"));
-            System.out.println("Consumer receive: "+closePrice);
-            if (priceBuffer.size() < 100) {
-                System.out.println("Collecting price...");
-                priceBuffer.add(closePrice);
-                System.out.println("Now buffer size is: "+priceBuffer.size());
-            } else {
-                System.out.println("Buffer is full, size = "+priceBuffer.size());
+            System.out.println("Consumer receive: " + closePrice);
+            priceBuffer.add(closePrice);
+            if (priceBuffer.size() <= 100) {
+                System.out.println("Collecting price...");                
+                System.out.println("Now buffer size is: " + priceBuffer.size());                
+            } else if(priceBuffer.size()==101){
+                System.out.println("Before remove: " + priceBuffer.size());
+                priceBuffer.remove();
+                System.out.println("After remove: " + priceBuffer.size());
+                System.out.println("Buffer is full, size = "
+                        + priceBuffer.size());
                 double[] priceArray = new double[priceBuffer.size()];
                 Iterator<Double> iterator = priceBuffer.iterator();
                 for (int i = 0; i < priceBuffer.size(); i++) {
                     priceArray[i] = iterator.next();
                 }
-                lr.jri(priceArray);
+                lr.jri(priceArray);                
             }
         }
     }

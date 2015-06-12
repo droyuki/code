@@ -11,7 +11,7 @@ public class LinearRegression {
     // public static LinearRegression getInstance() {
     // return lr == null ? (lr = new LinearRegression()) : lr;
     // }
-    Rengine re;
+    
     public LinearRegression() {
         System.out.println("LR create!");
     }
@@ -34,7 +34,7 @@ public class LinearRegression {
 //     }
 
     public void jri(double[] inputArr) {
-        re = new Rengine(new String[] { "--vanilla" }, false, null);
+        Rengine re = new Rengine(new String[] { "--vanilla" }, false, null);
         //test code
         int[] intArray = {33, 44, 55};
         System.out.println(re.assign("x", intArray));
@@ -47,18 +47,22 @@ public class LinearRegression {
         REXP value = re.eval("inputClose(inputV)");
         // REXP value = re.eval("as.vector(data.frame(a<-inputClose(inputV)))");
         double a = value.asDouble();
+        re.end();
         System.out.println("Done ! y = "+a);
-        sendSignal(a);
+        sendSignal(a);        
     }
 
     public void sendSignal(double y) {
+        System.out.println("Get result: "+y);
         String topic = "LinearRegression";
         String sendMe="";
-        if (y >= 3.5) { //buy
-            sendMe="=========Buy!!=========";
-        } else { //sell
+        if (y < 3.5) { //buy
             sendMe="=========Sell!!=========";
+        } else { //sell
+            sendMe="=========Buy!!=========";
         }
+        System.out.println(sendMe);
         KafkaTopicProducer.getInstance().send(topic, sendMe);
+        System.out.println("Signal has been sent.");
     }
 }

@@ -1,32 +1,41 @@
+
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.rosuda.JRI.REXP;
 import org.rosuda.JRI.Rengine;
 
 public class Test {
-	public static void main(String[] args) {
-		Rengine re = new Rengine(new String[]{"--vanilla"}, false, null);
-		// the engine creates R is a new thread, so we should wait until it's
-		// ready
-		if (!re.waitForR()) {
-			System.out.println("Cannot load R");
-			System.exit(0);
-		}
-		// load own R script
-		re.eval("source('~/Desktop/rSource/TaGenerator.R')");
+    public static void main(String[] args) {
+        Rengine re = new Rengine(new String[] { "--vanilla" }, false, null);
+        // the engine creates R is a new thread, so we should wait until it's
+        // ready
+        if (!re.waitForR()) {
+            System.out.println("Cannot load R");
+            System.exit(0);
+        }
+        // load own R script
+        re.eval("source('../resource/TaGenerator.R')");
 
-		// Test input double array
-		ArrayList<Double> testInput = new ArrayList<Double>();
-		for(double i = 9000;i<9389;i++) {
-		    testInput.add(i);
-		}
-		double[] inputArr = new double[testInput.size()];
-	    for(int i = 0;i<testInput.size();i++) {
-	        inputArr[i] = testInput.get(i);
-	    }
-		re.assign("inputV", inputArr);
-		REXP value = re.eval("inputClose(inputV)");
-		// REXP value = re.eval("as.vector(data.frame(a<-inputClose(inputV)))");
-		double a = value.asDouble();
-		System.out.println(a);
-	}
+        // Test input double array
+         ArrayList<Double> testInput = new ArrayList<Double>();
+         for(double i = 9000;i<9389;i++) {
+         testInput.add(i);
+         }
+         double[] inputArr = new double[testInput.size()];
+         for(int i = 0;i<testInput.size();i++) {
+         inputArr[i] = testInput.get(i);
+         }
+         re.assign("inputV", inputArr);
+        REXP value = re.eval("inputClose(inputV)");
+         // REXP value =
+         re.eval("as.vector(data.frame(a<-inputClose(inputV)))");
+         double a = value.asDouble();
+         System.out.println(a);
+        int[] intArray = { 33, 44, 55 };
+
+        System.out.println(re.assign("x", intArray));
+        System.out.println(Arrays.toString(re.eval("x").asIntArray()));
+        re.end();
+    }
 }
