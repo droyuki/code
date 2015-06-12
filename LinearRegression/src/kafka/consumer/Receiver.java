@@ -1,13 +1,8 @@
 package kafka.consumer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.rosuda.JRI.RVector;
-import org.rosuda.JRI.Rengine;
-
 import main.MsgReceiver;
 
 public class Receiver extends MsgReceiver {
