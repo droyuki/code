@@ -1,26 +1,19 @@
 package kafka.consumer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.rosuda.JRI.RVector;
-import org.rosuda.JRI.Rengine;
-
-import main.MsgReceiver;
-
-public class Receiver extends MsgReceiver {
-    Rengine re = new Rengine(new String[] { "--vanilla" }, false, null);
-
-    public void execute(String message) {
+public class KafkaTest{
+    public static void main(String[] args) {
         Map<String, String> msgMap = new HashMap<String, String>();
         Map<String, String> resultMap = new HashMap<String, String>();
+        String message="msgKey:taiwan_future_TXM5_5s@1434082773031;8:9261.0;5:9261.0;7:9261.0;Date:1434082773031;9:270216.0;6:9261.0;KBAR:taiwan_future_TXM5_5s_1434082773031;";
         msgMap = transToPriceMap(message);
-        resultMap = filterKBarID(msgMap);
-        double closePrice = Double.parseDouble(resultMap.get("Close"));
+        resultMap = filterKBarID(msgMap);   
+        System.out.println(resultMap.get("Close"));
     }
-    private Map<String, String> transToPriceMap(String valStr) {
+    public static Map<String, String> transToPriceMap(String valStr) {
         Map<String, String> retMe = new HashMap<String, String>();
         String[] valStrAry = valStr.split(";");
         for (String val : valStrAry) {
@@ -29,7 +22,7 @@ public class Receiver extends MsgReceiver {
         }
         return retMe;
     }
-    private Map<String, String> filterKBarID(Map<String, String> valMap) {
+    public static Map<String, String> filterKBarID(Map<String, String> valMap) {
         Map<String, String> retMe = new HashMap<String, String>();
         for (Entry<String, String> val : valMap.entrySet()) {
             if (val.getKey().equals("5"))
@@ -47,5 +40,4 @@ public class Receiver extends MsgReceiver {
         }
         return retMe;
     }
-
 }

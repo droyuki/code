@@ -17,8 +17,8 @@ public class Test {
 		}
 		// load own R script
 		re.eval("source('../LinearRegression/resource/TaGenerator.R')");
-		// REXP result = re.eval("demo(x)");
-		// System.out.println(result.asInt());
+
+		// Test input
 		re.eval("inputV <- c(9100:9389)");
 		REXP value = re.eval("inputClose(inputV)");
 		// REXP value = re.eval("as.vector(data.frame(a<-inputClose(inputV)))");
