@@ -27,6 +27,10 @@ class Producer extends Thread {
 
 public class Sender {
     public static void main(String[] args) {
+        if(args.length != 1) {
+            System.out.println("Please enter topic.");
+            System.exit(0);
+        }
         Producer p = new Producer(args[0]);
         p.start();
     }
