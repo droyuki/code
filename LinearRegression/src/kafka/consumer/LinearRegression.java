@@ -56,9 +56,9 @@ public class LinearRegression {
         System.out.println("Get result: "+y);
         String topic = "LinearRegression";
         String sendMe="";
-        if (y < 3.5) { //buy
+        if (y < 3.5) { 
             sendMe="=========Sell!!=========";
-        } else { //sell
+        } else { 
             sendMe="=========Buy!!=========";
         }
         System.out.println(sendMe);
