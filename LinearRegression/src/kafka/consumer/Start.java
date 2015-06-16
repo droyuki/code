@@ -11,7 +11,8 @@ public class Start{
             System.exit(0);
         }
         @SuppressWarnings("unused")
-        KafkaTopicConsumer ktc = new KafkaTopicConsumer("192.168.1.104:2181,192.168.1.105:2181,192.168.1.106:2181",
+        //for km lab: 192.168.1.104:2181,192.168.1.105:2181,192.168.1.106:2181
+        KafkaTopicConsumer ktc = new KafkaTopicConsumer("140.119.19.230:2181,140.119.19.232:2181,140.119.19.238:2181",
                 groupid, topic, r);
     }
 }
