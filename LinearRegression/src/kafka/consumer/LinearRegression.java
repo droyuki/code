@@ -54,12 +54,12 @@ public class LinearRegression {
 
     public void sendSignal(double y) {
         System.out.println("Get result: "+y);
-        String topic = "LinearRegression";
+        String topic = "Rmodel";
         String sendMe="";
-        if (y < 3.5) { 
-            sendMe="=========Sell!!=========";
-        } else { 
-            sendMe="=========Buy!!=========";
+        if (y < 3.5) { //sell
+            sendMe="{model:\"Linear\",signal:0}";
+        } else { //buy
+            sendMe="{model:\"Linear\",signal:1}";
         }
         System.out.println(sendMe);
         KafkaTopicProducer.getInstance().send(topic, sendMe);
