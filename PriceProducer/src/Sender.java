@@ -3,10 +3,11 @@ import java.util.Random;
 import main.KafkaTopicProducer;
 
 class Producer extends Thread {
-    String topic;
-    public Producer(String arg) {
-        this.topic = arg;
-    }
+//    String topic;
+//    public Producer(String arg) {
+//        this.topic = arg;
+//        System.out.println("Start sending message to opic: "+topic);
+//    }
     public void run() {
         try {
             while (true) {
@@ -16,7 +17,7 @@ class Producer extends Thread {
                 sendMe += String.valueOf(random);
                 sendMe += ";Date:1434087245764;9:50866.0;6:1192.6;KBAR:taiwan_future_TFM5_1m_1434087245764;";
                 System.out.println(sendMe);
-                KafkaTopicProducer.getInstance().send(topic, sendMe);
+                KafkaTopicProducer.getInstance().send("Price", sendMe);
                 Thread.sleep(500);
             }
         } catch (Exception e) {
@@ -27,11 +28,7 @@ class Producer extends Thread {
 
 public class Sender {
     public static void main(String[] args) {
-        if(args.length != 1) {
-            System.out.println("Please enter topic.");
-            System.exit(0);
-        }
-        Producer p = new Producer(args[0]);
+        Producer p = new Producer();
         p.start();
     }
 }
