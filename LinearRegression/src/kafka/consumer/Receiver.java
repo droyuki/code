@@ -25,6 +25,7 @@ public class Receiver extends MsgReceiver {
 
         // we only need 1m
         String kbar = resultMap.get("KBAR");
+        String date = resultMap.get("Date");
         String time = kbar.split("_")[3];
         if (time.equalsIgnoreCase("1m")) {
             double closePrice = Double.parseDouble(resultMap.get("Close"));
@@ -44,7 +45,7 @@ public class Receiver extends MsgReceiver {
                 for (int i = 0; i < priceBuffer.size(); i++) {
                     priceArray[i] = iterator.next();
                 }
-                lr.jri(priceArray);                
+                lr.jri(priceArray, date);                
             }
         }
     }
@@ -72,6 +73,8 @@ public class Receiver extends MsgReceiver {
                 retMe.put("Low", val.getValue());
             else if (val.getKey().equals("9"))
                 retMe.put("Volume", val.getValue());
+            else if (val.getKey().equals("Date"))
+                retMe.put("Date", val.getValue());
             else
                 retMe.put(val.getKey(), val.getValue());
         }
