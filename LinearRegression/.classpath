@@ -16,6 +16,6 @@
 	<classpathentry kind="lib" path="lib/zkclient-0.3.jar"/>
 	<classpathentry kind="lib" path="lib/zookeeper-3.3.4.jar"/>
 	<classpathentry kind="lib" path="lib/GlobalConfigMap.jar"/>
-	<classpathentry kind="lib" path="libForMis-lab/KafkaHelper_20150114_mislab.jar"/>
+	<classpathentry kind="lib" path="lib/KafkaHelper_20141209.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

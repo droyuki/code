@@ -13,7 +13,7 @@ public class LinearRegression {
     // }
     Rengine re;
     public LinearRegression() {
-        System.out.println("LR create!");
+        System.out.println("Linear Regression start!");
     }
 
 //     public void collectBuffer(double price) {
