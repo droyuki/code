@@ -59,10 +59,10 @@ public class LinearRegression {
         String topic = "Rmodel";
         String sendMe = "";
         if (y < 3.5) { // sell
-            sendMe = "{\"method\":\"Linear\",\"signal\":0,\"timestamp\":\""
+            sendMe = "{\"method\":\"Linear\",\"signal\":0,\"datetime\":\""
                     + date + "\"}";
         } else { // buy
-            sendMe = "{\"method\":\"Linear\",\"signal\":1,\"timestamp\":\""
+            sendMe = "{\"method\":\"Linear\",\"signal\":1,\"datetime\":\""
                     + date + "\"}";
         }
         System.out.println(sendMe);
