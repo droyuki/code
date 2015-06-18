@@ -1,5 +1,6 @@
 package kafka.consumer;
 
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -9,10 +10,17 @@ public class KafkaTest{
         Map<String, String> msgMap = new HashMap<String, String>();
         Map<String, String> resultMap = new HashMap<String, String>();
         String message="msgKey:taiwan_future_TXM5_5s@1434082773031;8:9261.0;5:9261.0;7:9261.0;Date:1434082773031;9:270216.0;6:9261.0;KBAR:taiwan_future_TXM5_5s_1434082773031;";
+        //String message = "msgKey:taiwan_future_TFN5_1m@1434593933633;8:1163.2;5:1163.2;7:1163.2;Date:1434593933633;9:4163.0;6:1163.2;KBAR:taiwan_future_TFN5_1m_1434593933633;";
         msgMap = transToPriceMap(message);
         resultMap = filterKBarID(msgMap);
         System.out.println(resultMap.get("KBAR").split("_")[3]);
-        System.out.println(resultMap.get("Date"));
+        String product =resultMap.get("KBAR").split("_")[2];
+        String date = new java.text.SimpleDateFormat("yyyy/dd/MM HH:mm:ss").format(new java.util.Date(Long.parseLong(resultMap.get("Date"))));
+        System.out.println(date);
+        if(product.startsWith("TX"))
+            System.out.println(1);
+        else
+            System.out.println(0);
     }
     public static Map<String, String> transToPriceMap(String valStr) {
         Map<String, String> retMe = new HashMap<String, String>();

@@ -25,9 +25,10 @@ public class Receiver extends MsgReceiver {
 
         // we only need 1m
         String kbar = resultMap.get("KBAR");
-        String date = resultMap.get("Date");
+        String date = new java.text.SimpleDateFormat("yyyy/dd/MM HH:mm:ss").format(new java.util.Date(Long.parseLong(resultMap.get("Date"))));
         String time = kbar.split("_")[3];
-        if (time.equalsIgnoreCase("1m")) {
+        String product = kbar.split("_")[2];
+        if (time.equalsIgnoreCase("1m") && product.startsWith("TX")) {
             double closePrice = Double.parseDouble(resultMap.get("Close"));
             System.out.println("Consumer receive: " + closePrice);
             priceBuffer.add(closePrice);
