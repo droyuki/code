@@ -12,7 +12,7 @@ public class LinearRegression {
         System.out.println("Linear Regression start!");
     }
 
-    public void jri(double[] inputArr, String date) {
+    public void jri(double[] inputArr, String date, String currentPrice) {
         if (re == null)
             re = new Rengine(new String[] { "--vanilla" }, false, null);
         // test code
@@ -28,14 +28,14 @@ public class LinearRegression {
         // REXP value = re.eval("as.vector(data.frame(a<-inputClose(inputV)))");
         double a = value.asDouble();
         System.out.println("Done ! y = " + a);
-        sendSignal(a, date);
+        sendSignal(a, date, currentPrice);
     }
 
-    public void sendSignal(double y, String date) {
+    public void sendSignal(double y, String date, Sting currentPrice) {
         System.out.println("Get result: " + y);
         String topic = "Rmodel";
         String sendMe = "";
-        if (y < 3.5) { // sell
+        if (y <= 3.5) { // sell
             sendMe = "{\"method\":\"Linear\",\"signal\":0,\"datetime\":\""
                     + date + "\"}";
         } else { // buy

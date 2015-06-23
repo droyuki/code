@@ -27,7 +27,7 @@ public class Receiver extends MsgReceiver {
         String kbar = resultMap.get("KBAR");
         String date = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.util.Date(Long.parseLong(resultMap.get("Date"))));
         String time = kbar.split("_")[3];
-        String product = kbar.split("_")[2];
+        String product = kbar.split("_")[2];        
         if (time.equalsIgnoreCase("1m") && product.startsWith("TX")) {
             double closePrice = Double.parseDouble(resultMap.get("Close"));
             System.out.println("Consumer receive: " + closePrice);
@@ -46,7 +46,7 @@ public class Receiver extends MsgReceiver {
                 for (int i = 0; i < priceBuffer.size(); i++) {
                     priceArray[i] = iterator.next();
                 }
-                lr.jri(priceArray, date);                
+                lr.jri(priceArray, date, closePrice);                
             }
         }
     }
