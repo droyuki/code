@@ -6,34 +6,11 @@ import org.rosuda.JRI.Rengine;
 import main.KafkaTopicProducer;
 
 public class LinearRegression {
-    // private static LinearRegression lr = null;
-    // private Queue<Double> priceBuffer = new LinkedList<Double>();
-
-    // public static LinearRegression getInstance() {
-    // return lr == null ? (lr = new LinearRegression()) : lr;
-    // }
     Rengine re;
 
     public LinearRegression() {
         System.out.println("Linear Regression start!");
     }
-
-    // public void collectBuffer(double price) {
-    // // 暫存近90分鐘內的close price
-    // if (priceBuffer.size() < 90) {
-    // System.out.println("Collecting price...");
-    // priceBuffer.add(price);
-    // System.out.println("Now buffer size is: "+priceBuffer.size());
-    // } else {
-    // System.out.println("Buffer queue is full, size = "+priceBuffer.size());
-    // double[] priceArray = new double[priceBuffer.size()];
-    // Iterator<Double> iterator = priceBuffer.iterator();
-    // for (int i = 0; i < priceBuffer.size(); i++) {
-    // priceArray[i] = iterator.next();
-    // }
-    // jri(priceArray);
-    // }
-    // }
 
     public void jri(double[] inputArr, String date) {
         if (re == null)
