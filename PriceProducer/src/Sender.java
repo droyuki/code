@@ -3,11 +3,6 @@ import java.util.Random;
 import main.KafkaTopicProducer;
 
 class Producer extends Thread {
-//    String topic;
-//    public Producer(String arg) {
-//        this.topic = arg;
-//        System.out.println("Start sending message to opic: "+topic);
-//    }
     public void run() {
         try {
             while (true) {
