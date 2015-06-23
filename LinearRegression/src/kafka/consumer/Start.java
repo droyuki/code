@@ -5,7 +5,7 @@ public class Start{
     //-Djava.library.path="/home/kmlab/R/x86_64-pc-linux-gnu-library/3.0/rJava/jri"
     public static void main(String[] args) {
         Receiver r = new Receiver();
-        String groupid = "PriceForLinear", topic = "Price";
+        String groupid = "PriceForLR", topic = "Price";
 //        if(args.length != 2) {
 //            System.out.println("Please enter groupid and topic.");
 //            System.exit(0);
