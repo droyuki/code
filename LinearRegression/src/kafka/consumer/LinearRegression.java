@@ -12,7 +12,7 @@ public class LinearRegression {
         System.out.println("Linear Regression start!");
     }
 
-    public void jri(double[] inputArr, String date, String currentPrice) {
+    public void jri(double[] inputArr, String date, double currentPrice) {
         if (re == null)
             re = new Rengine(new String[] { "--vanilla" }, false, null);
         // test code
@@ -31,16 +31,16 @@ public class LinearRegression {
         sendSignal(a, date, currentPrice);
     }
 
-    public void sendSignal(double y, String date, Sting currentPrice) {
+    public void sendSignal(double y, String date, double currentPrice) {
         System.out.println("Get result: " + y);
         String topic = "Rmodel";
         String sendMe = "";
         if (y <= 3.5) { // sell
             sendMe = "{\"method\":\"Linear\",\"signal\":0,\"datetime\":\""
-                    + date + "\"}";
+                    + date + "\",\"price\":\""+currentPrice+"\"}";
         } else { // buy
             sendMe = "{\"method\":\"Linear\",\"signal\":1,\"datetime\":\""
-                    + date + "\"}";
+                    + date + "\",\"price\":\""+currentPrice+"\"}";
         }
         System.out.println(sendMe);
         KafkaTopicProducer.getInstance().send(topic, sendMe);
