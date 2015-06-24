@@ -28,7 +28,7 @@ public class Receiver extends MsgReceiver {
         String date = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.util.Date(Long.parseLong(resultMap.get("Date"))));
         String time = kbar.split("_")[3];
         String product = kbar.split("_")[2];        
-        if (time.equalsIgnoreCase("1m") && product.startsWith("TX")) {
+        if (time.equalsIgnoreCase("1m") && product.startsWith("TXQ5")) {
             double closePrice = Double.parseDouble(resultMap.get("Close"));
             System.out.println("Consumer receive: " + closePrice);
             priceBuffer.add(closePrice);
